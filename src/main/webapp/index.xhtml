@@ -1,17 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>CATEGORIAS</title>
+        <title>Página Principal</title>
+        <h:outputStylesheet library ="css" name="indexCSS.css"/>
     </h:head>
     <h:body>
-        <h:form>
-            <p:outputLabel value="Introduzca nombre de categoria"/>
-            <p:inputText value="#{CategoriaComponenteController.cat.nombreComponente}"/>
-            <p:commandButton value="Insertar" actionListener="#{CategoriaComponenteController.insertarCategoria()}"/>
-        </h:form>
-    </h:body>
-</html>
+        <div class="card">
+            <p:sidebar widgetVar="sidebar1">
+                <h2>Menú</h2>
+                <h4>Iniciar Sesión</h4>
+                <p:commandButton icon="pi pi-sign-in" type="button" styleClass="mr-2" value="login Cliente" onclick="window.location.href = 'loginCliente.xhtml'"/>
+                <p></p>
+                <p:commandButton icon="pi pi-sign-in" type="button" styleClass="mr-2" value="login Empleado" onclick="window.location.href = 'loginEmpleado.xhtml'"/>
+                <p></p>
+                <p:commandButton icon="pi pi-sign-in" type="button" styleClass="mr-2" value="login Administrador" onclick="window.location.href = 'loginAdministrador.xhtml'"/>
+                <br/>
+                <br/>
+                <h4>Regístrarse</h4>
+                <p:commandButton icon="pi pi-arrow-down" type="button" styleClass="mr-2" value="Registro" onclick="window.location.href = 'AltaCliente.xhtml'" />
+            </p:sidebar>
+            <p:commandButton icon="pi pi-align-justify" type="button" onclick="PF('sidebar1').show()" styleClass="mr-2" />
+            
+            <div class="intro-section">
+                <h2 class="intro-section h2">Bienvenido a CompReparaciones</h2>
+                <p class="intro-section p">Tu página de reparación de ordenadores</p>
+            </div>
 
+            <div class="content-section">
+                <div class="content-item">
+                    <div class="image">
+                        <img src="resources/imagenes/repImgIndex1.jpg" alt="Imagen izquierda"/>
+                    </div>
+                    <div class="text">
+                        <h3>Título del texto izquierdo</h3>
+                        <p>Contenido del texto izquierdo</p>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <div class="text">
+                        <h3>Título del texto derecho</h3>
+                        <p>Contenido del texto derecho</p>
+                    </div>
+                    <div class="image">
+                        <img src="resources/imagenes/repImgIndex2.jpg" alt="Imagen derecha"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</xhtml>
