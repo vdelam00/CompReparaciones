@@ -12,6 +12,7 @@
 
             <ui:define name="content">
                 <div class="card">
+                    <!--Tabla para ver las reparaciones asignadas por empleado-->
                     <h2>REPARACIONES</h2>
                     <h:form id="tableForm">
                         <p:dataTable value="#{ModificarEmpleadoController.reparaciones}" var="reparacion" rows="10"
@@ -46,6 +47,7 @@
                                 </h:commandLink>
                             </p:column>
                         </p:dataTable>
+                        <!--Añadir una reparacion con el ordenador asignado-->
                         <h:panelGrid columns="2">
                             <h:outputLabel for="descripcionInput" value="Descripcion de la reparacion:" />
                             <p:inputText id="descripcionInput" value="#{ModificarEmpleadoController.reparacionAgregar.descripcion}" />
@@ -57,7 +59,10 @@
                             <p:calendar id="fechaFin" value="#{ModificarEmpleadoController.reparacionAgregar.fechaFin}" pattern="yyyy-MM-dd" /> 
                             
                             <h:outputLabel for="ordenadorInput" value="Ordenador de la reparacion:" />
-                            <p:inputText id="ordenadorInput" value="#{ModificarEmpleadoController.reparacionAgregar.ordenador.nombre}" />
+                            <p:selectOneMenu id="ordenadorInput" value="#{ModificarEmpleadoController.ordenadorSeleccionado}">
+                                <f:selectItems value="#{ModificarEmpleadoController.ordenadores}" var="ordenador"
+                                               itemLabel="#{ordenador.nombre}" itemValue="#{ordenador}" />
+                            </p:selectOneMenu>
                         </h:panelGrid>
                         <p:commandButton value="Añadir Reparacion" action="#{ModificarEmpleadoController.agregarReparacion()}" update="tableForm" />
                         <!--tabla para ver tu ordenador y guardarlo bbdd-->
