@@ -10,20 +10,33 @@ and open the template in the editor.
 
 .intro-section {
   text-align: center;
+  font-family: "Arial", sans-serif;
+  color: #333;
 }
 
 .intro-section h2 {
   font-size: 24px;
+  font-family: "Arial", sans-serif;
+  color: #333;
 }
 
 .intro-section p {
   font-size: 18px;
   margin-top: 10px;
+  font-family: "Verdana", sans-serif;
+  color: #666;
 }
 
 .content-section {
   display: flex;
   flex-direction: column;
+}
+
+.content-section p {
+  font-size: 20px;
+  margin-top: 10px;
+  font-family: "Verdana", sans-serif;
+  color: #666;
 }
 
 .content-item {
@@ -35,6 +48,13 @@ and open the template in the editor.
 .content-item .image {
   flex: 1;
   margin-right: 20px;
+  margin-left: 20px;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+}
+
+.content-item .image img{
   width: 100%;
   height: auto;
 }
