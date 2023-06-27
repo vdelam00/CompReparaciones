@@ -6,6 +6,7 @@
 package controlador;
 
 import EJB.OrdenadorFacadeLocal;
+import EJB.ReparacionFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Cliente;
 import modelo.Ordenador;
+import modelo.Reparacion;
 
 /**
  *
@@ -31,9 +33,13 @@ public class ModificarClienteController implements Serializable {
     private Cliente cliente;
     private List<Ordenador> ordenadores;
     private Ordenador ordenadorAgregar;
+    private List<Reparacion> reparacionesList;
 
     @EJB
     private OrdenadorFacadeLocal ordenadorEJB;
+    
+    @EJB
+    private ReparacionFacadeLocal reparacionEJB;
     
     @PostConstruct
     public void init() {
@@ -43,6 +49,7 @@ public class ModificarClienteController implements Serializable {
         
         ordenadores = cliente.getOrdenadores();
         ordenadorAgregar = new Ordenador();
+        reparacionesList = reparacionEJB.findAll();
 
     }
 
@@ -70,13 +77,31 @@ public class ModificarClienteController implements Serializable {
         this.ordenadorEJB = ordenadorEJB;
     }
 
+    public List<Reparacion> getReparacionesList() {
+        return reparacionesList;
+    }
+
+    public void setReparacionesList(List<Reparacion> reparacionesList) {
+        this.reparacionesList = reparacionesList;
+    }
+
+    public ReparacionFacadeLocal getReparacionEJB() {
+        return reparacionEJB;
+    }
+
+    public void setReparacionEJB(ReparacionFacadeLocal reparacionEJB) {
+        this.reparacionEJB = reparacionEJB;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.cliente);
-        hash = 29 * hash + Objects.hashCode(this.ordenadores);
-        hash = 29 * hash + Objects.hashCode(this.ordenadorAgregar);
-        hash = 29 * hash + Objects.hashCode(this.ordenadorEJB);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.cliente);
+        hash = 97 * hash + Objects.hashCode(this.ordenadores);
+        hash = 97 * hash + Objects.hashCode(this.ordenadorAgregar);
+        hash = 97 * hash + Objects.hashCode(this.reparacionesList);
+        hash = 97 * hash + Objects.hashCode(this.ordenadorEJB);
+        hash = 97 * hash + Objects.hashCode(this.reparacionEJB);
         return hash;
     }
 
@@ -101,11 +126,25 @@ public class ModificarClienteController implements Serializable {
         if (!Objects.equals(this.ordenadorAgregar, other.ordenadorAgregar)) {
             return false;
         }
+        if (!Objects.equals(this.reparacionesList, other.reparacionesList)) {
+            return false;
+        }
         if (!Objects.equals(this.ordenadorEJB, other.ordenadorEJB)) {
+            return false;
+        }
+        if (!Objects.equals(this.reparacionEJB, other.reparacionEJB)) {
             return false;
         }
         return true;
     }
+
+    
+    
+    
+
+    
+    
+    
 
     
     
