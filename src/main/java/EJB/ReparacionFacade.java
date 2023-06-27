@@ -5,9 +5,12 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import modelo.Empleado;
 import modelo.Reparacion;
 
 /**
@@ -27,6 +30,13 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
 
     public ReparacionFacade() {
         super(Reparacion.class);
+    }
+    
+    
+    public List<Reparacion> findByEmpleado(Empleado empleado) {
+        TypedQuery<Reparacion> query = em.createQuery("SELECT r FROM Reparacion r WHERE r.empleado = :empleado", Reparacion.class);
+        query.setParameter("empleado", empleado);
+        return query.getResultList();
     }
     
 }

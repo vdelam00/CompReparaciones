@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<xhtml xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:p="http://primefaces.org/ui"
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+    <h:body>
 
         <ui:composition template="./../../WEB-INF/template/plantillaOrdenadores.xhtml">
 
@@ -38,38 +38,21 @@
                                 </h:commandLink>
                             </p:column>
                         </p:dataTable>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="nombreInput" value="Nombre del ordenador:" />
+                            <p:inputText id="nombreInput" value="#{ModificarClienteController.ordenadorAgregar.nombre}" />
+
+                            <h:outputLabel for="descripcionInput" value="Descripción del ordenador:" />
+                            <p:inputText id="descripcionInput" value="#{ModificarClienteController.ordenadorAgregar.descripcion}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Añadir Ordenador" action="#{ModificarClienteController.agregarOrdenador()}" update="tableForm" />
                         <br/>
-                        <p:commandButton value="Añadir Ordenador" action="#{EmpleadoController.agregarEmpleado()}" update="tableForm" />
+                        <!--agregar un nuevo ordenador-->
+                        
                         <br/>
                         <br/>
                         <br/>
-                        <!-- tabla para ver y guardar tus reparaciones-->
-                        <h2>REPARACIONES</h2>
-                        <p:dataTable value="#{ModificarEmpleadoController.reparaciones}" var="reparacion" rows="10"
-                                     paginator="true" paginatorPosition="both"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{reparacion.id}" />
-                            </p:column>
-                            <p:column headerText="Descripcion">
-                                <h:outputText value="#{reparacion.descripcion}" />
-                            </p:column>
-                            <p:column headerText="fechaInicio">
-                                <h:outputText value="#{reparacion.fechaInicio}" />
-                            </p:column>
-                            <p:column headerText="fechaFin">
-                                <h:outputText value="#{reparacion.fechaFin}" />
-                            </p:column>
-                            <p:column headerText="Ordenador">
-                                <h:outputText value="#{reparacion.ordenador.id}" />
-                            </p:column>
-                            <p:column headerText="Empleado">
-                                <h:outputText value="#{reparacion.empleado.user}" />
-                            </p:column>
-                            
-                        </p:dataTable>
+                        
                     </h:form>
                     
                 </div>
@@ -77,5 +60,5 @@
 
         </ui:composition>
 
-    </body>
-</xhtml>
+    </h:body>
+</html>

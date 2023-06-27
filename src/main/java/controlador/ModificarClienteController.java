@@ -30,6 +30,7 @@ import modelo.Ordenador;
 public class ModificarClienteController implements Serializable {
     private Cliente cliente;
     private List<Ordenador> ordenadores;
+    private Ordenador ordenadorAgregar;
 
     @EJB
     private OrdenadorFacadeLocal ordenadorEJB;
@@ -41,6 +42,7 @@ public class ModificarClienteController implements Serializable {
         cliente = (Cliente) externalContext.getSessionMap().get("cliente");
         
         ordenadores = cliente.getOrdenadores();
+        ordenadorAgregar = new Ordenador();
 
     }
 
@@ -52,11 +54,29 @@ public class ModificarClienteController implements Serializable {
         this.cliente = cliente;
     }
 
+    public Ordenador getOrdenadorAgregar() {
+        return ordenadorAgregar;
+    }
+
+    public void setOrdenadorAgregar(Ordenador ordenadorAgregar) {
+        this.ordenadorAgregar = ordenadorAgregar;
+    }
+
+    public OrdenadorFacadeLocal getOrdenadorEJB() {
+        return ordenadorEJB;
+    }
+
+    public void setOrdenadorEJB(OrdenadorFacadeLocal ordenadorEJB) {
+        this.ordenadorEJB = ordenadorEJB;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.cliente);
-        hash = 37 * hash + Objects.hashCode(this.ordenadores);
+        hash = 29 * hash + Objects.hashCode(this.cliente);
+        hash = 29 * hash + Objects.hashCode(this.ordenadores);
+        hash = 29 * hash + Objects.hashCode(this.ordenadorAgregar);
+        hash = 29 * hash + Objects.hashCode(this.ordenadorEJB);
         return hash;
     }
 
@@ -78,12 +98,22 @@ public class ModificarClienteController implements Serializable {
         if (!Objects.equals(this.ordenadores, other.ordenadores)) {
             return false;
         }
+        if (!Objects.equals(this.ordenadorAgregar, other.ordenadorAgregar)) {
+            return false;
+        }
+        if (!Objects.equals(this.ordenadorEJB, other.ordenadorEJB)) {
+            return false;
+        }
         return true;
     }
+
+    
+    
     
     
     
     public List<Ordenador> getOrdenadores(){
+        ordenadores = ordenadorEJB.findByCliente(cliente);
         return ordenadores;
     }
     
@@ -96,5 +126,21 @@ public class ModificarClienteController implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar el ordenador", null));
         }
+    }
+    
+    public void agregarOrdenador() {
+        Ordenador nuevoOrdenador = new Ordenador();
+        nuevoOrdenador.setNombre(ordenadorAgregar.getNombre());
+        nuevoOrdenador.setDescripcion(ordenadorAgregar.getDescripcion());
+        nuevoOrdenador.setCliente(cliente);
+
+        // Guardar el nuevo ordenador en la base de datos utilizando el EJB OrdenadorFacade
+        ordenadorEJB.create(nuevoOrdenador);
+
+        // Actualizar la lista de ordenadores desde la base de datos
+        ordenadores = ordenadorEJB.findByCliente(cliente);
+
+        // Limpiar los datos del formulario o crear un nuevo objeto Ordenador
+        ordenadorAgregar = new Ordenador();
     }
 }
