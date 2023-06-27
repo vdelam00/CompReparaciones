@@ -33,7 +33,7 @@
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Eliminar" />
+                                    <h:outputText value="" />
                                 </f:facet>
                                 <h:commandLink value="Eliminar" action="#{EmpleadoController.eliminarEmpleado(empleado)}">
                                     <f:ajax execute="@this" render="@form" />
@@ -41,7 +41,7 @@
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Modificar" />
+                                    <h:outputText value="" />
                                 </f:facet>
                                 <h:commandButton value="Modificar" type="button" onclick="PF('modificarDialog').show()">
                                     <f:setPropertyActionListener target="#{EmpleadoController.empleadoModificacion}" value="#{empleado}" />
