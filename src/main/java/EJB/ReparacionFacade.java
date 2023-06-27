@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import modelo.Cliente;
 import modelo.Empleado;
 import modelo.Reparacion;
 
@@ -39,4 +40,9 @@ public class ReparacionFacade extends AbstractFacade<Reparacion> implements Repa
         return query.getResultList();
     }
     
+    public List<Reparacion> findByCliente(Cliente cliente) {
+        TypedQuery<Reparacion> query = em.createQuery("SELECT r FROM Reparacion r WHERE r.ordenador.cliente = :cliente", Reparacion.class);
+        query.setParameter("cliente", cliente);
+        return query.getResultList();
+    }
 }

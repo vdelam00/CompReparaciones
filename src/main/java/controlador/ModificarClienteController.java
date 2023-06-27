@@ -147,7 +147,9 @@ public class ModificarClienteController implements Serializable {
     
 
     
-    
+    public List<Reparacion> getReparacionesCliente() {
+        return reparacionEJB.findByCliente(cliente);
+    }
     
     
     

@@ -54,7 +54,7 @@
                         <br/>
                         <!--tabla para ver tus reparaciones en curso-->
                         <h2>REPARACIONES</h2>
-                        <p:dataTable value="#{ModificarClienteController.reparacionesList}" var="reparacion" rows="10"
+                        <p:dataTable value="#{ModificarClienteController.getReparacionesCliente()}" var="reparacion" rows="10"
                                      paginator="true" paginatorPosition="both"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -72,18 +72,10 @@
                                 <h:outputText value="#{reparacion.fechaFin}" />
                             </p:column>
                             <p:column headerText="Ordenador">
-                                <h:outputText value="#{reparacion.ordenador.cliente}" />
+                                <h:outputText value="#{reparacion.ordenador.nombre}" />
                             </p:column>
                             <p:column headerText="Empleado">
                                 <h:outputText value="#{reparacion.empleado.user}" />
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="" />
-                                </f:facet>
-                                <h:commandLink value="Eliminar" action="#{ModificarClienteController.eliminarOrdenador(ordenador)}">
-                                    <f:ajax execute="@this" render="@form" />
-                                </h:commandLink>
                             </p:column>
                         </p:dataTable>
                         

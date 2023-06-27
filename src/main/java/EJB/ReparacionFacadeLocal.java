@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Cliente;
 import modelo.Empleado;
 import modelo.Reparacion;
 
@@ -32,5 +33,7 @@ public interface ReparacionFacadeLocal {
     int count();
     
     List<Reparacion> findByEmpleado(Empleado empleado);
+    
+    List<Reparacion> findByCliente(Cliente cliente);
     
 }
