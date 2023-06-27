@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantillaOrdenadores.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+                    <h2>EMPLEADOS</h2>
+                    <h:form id="tableForm">
+                        <p:dataTable id="employeeTable" var="empleado" value="#{EmpleadoController.listaDeEmpleados}" rows="10"
+                                     paginator="true" paginatorPosition="both"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                            <p:column headerText="Usuario">
+                                <h:outputText value="#{empleado.user}" />
+                            </p:column>
+                            <p:column headerText="Contraseña">
+                                <h:outputText value="#{empleado.password}" />
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{empleado.nombre}" />
+                            </p:column>
+                            <p:column headerText="Apellidos">
+                                <h:outputText value="#{empleado.apellidos}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="" />
+                                </f:facet>
+                                <h:commandLink value="Eliminar" action="#{EmpleadoController.eliminarEmpleado(empleado)}">
+                                    <f:ajax execute="@this" render="@form" />
+                                </h:commandLink>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="" />
+                                </f:facet>
+                                <h:commandButton value="Modificar" type="button" onclick="PF('modificarDialog').show()">
+                                    <f:setPropertyActionListener target="#{EmpleadoController.empleadoModificacion}" value="#{empleado}" />
+                                </h:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="userInputA" value="Usuario:" />
+                            <p:inputText id="userInputA" value="#{EmpleadoController.empleado.user}" />
+
+                            <h:outputLabel for="passwordInputA" value="Contraseña:" />
+                            <p:inputText id="passwordInputA" value="#{EmpleadoController.empleado.password}" />
+
+                            <h:outputLabel for="nombreInputA" value="Nombre:" />
+                            <p:inputText id="nombreInputA" value="#{EmpleadoController.empleado.nombre}" />
+
+                            <h:outputLabel for="apellidosInputA" value="Apellidos:" />
+                            <p:inputText id="apellidosInputA" value="#{EmpleadoController.empleado.apellidos}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Añadir Empleado" action="#{EmpleadoController.agregarEmpleado()}" update="tableForm" />
+                        <p:dialog header="Modificar Empleado" widgetVar="modificarDialog" modal="true" minHeight="40" width="350" showEffect="fade">
+                            <!--<h:panelGrid columns="2">
+                                <h:outputLabel for="userInputM" value="Usuario:" />
+                                <p:inputText id="userInputM" value="#{EmpleadoController.empleadoModificacion.user}" />
+
+                                <h:outputLabel for="passwordInputM" value="Contraseña:" />
+                                <p:inputText id="passwordInputM" value="#{EmpleadoController.empleadoModificacion.password}" />
+
+                                <h:outputLabel for="nombreInputM" value="Nombre:" />
+                                <p:inputText id="nombreInputM" value="#{EmpleadoController.empleadoModificacion.nombre}" />
+
+                                <h:outputLabel for="apellidosInputM" value="Apellidos:" />
+                                <p:inputText id="apellidosInputM" value="#{EmpleadoController.empleadoModificacion.apellidos}" />
+                            </h:panelGrid>-->
+                            <p:commandButton value="Modificar Empleado" action="#{EmpleadoController.modificarEmpleado()}" update="tableForm" />
+                        </p:dialog>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</xhtml>
