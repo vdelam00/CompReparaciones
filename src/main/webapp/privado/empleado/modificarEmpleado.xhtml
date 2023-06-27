@@ -62,19 +62,19 @@
                         <p:commandButton value="Añadir Reparacion" action="#{ModificarEmpleadoController.agregarReparacion()}" update="tableForm" />
                         <!--tabla para ver tu ordenador y guardarlo bbdd-->
                         <h2>ORDENADORES</h2>
-                        <p:dataTable value="#{ModificarEmpleadoController.ordenadores}" var="ordenadoR" rows="10"
+                        <p:dataTable value="#{ModificarEmpleadoController.ordenadores}" var="ordenador" rows="10"
                                      paginator="true" paginatorPosition="both"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                      rowsPerPageTemplate="5,10,{ShowAll|'All'}">
                             <p:column headerText="ID">
-                                <h:outputText value="#{ordenadoR.id}" />
+                                <h:outputText value="#{ordenador.id}" />
                             </p:column>
                             <p:column headerText="Nombre">
-                                <h:outputText value="#{ordenadoR.nombre}" />
+                                <h:outputText value="#{ordenador.nombre}" />
                             </p:column>
                             <p:column headerText="Descripción">
-                                <h:outputText value="#{ordenadoR.descripcion}" />
+                                <h:outputText value="#{ordenador.descripcion}" />
                             </p:column>
                         </p:dataTable>
                     </h:form>
