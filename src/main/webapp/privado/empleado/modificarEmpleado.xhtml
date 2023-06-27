@@ -57,10 +57,12 @@
                             <p:calendar id="fechaFin" value="#{ModificarEmpleadoController.reparacionAgregar.fechaFin}" pattern="yyyy-MM-dd" /> 
                             
                             <h:outputLabel for="ordenadorInput" value="Ordenador de la reparacion:" />
-                            <p:inputText id="ordenadorInput" value="#{ModificarEmpleadoController.reparacionAgregar.ordenador.id}" />
+                            <p:inputText id="ordenadorInput" value="#{ModificarEmpleadoController.reparacionAgregar.ordenador.nombre}" />
                         </h:panelGrid>
                         <p:commandButton value="Añadir Reparacion" action="#{ModificarEmpleadoController.agregarReparacion()}" update="tableForm" />
                         <!--tabla para ver tu ordenador y guardarlo bbdd-->
+                        <br/>
+                        <br/>
                         <h2>ORDENADORES</h2>
                         <p:dataTable value="#{ModificarEmpleadoController.ordenadores}" var="ordenador" rows="10"
                                      paginator="true" paginatorPosition="both"
