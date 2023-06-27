@@ -35,7 +35,7 @@ public class ModificarEmpleadoController implements Serializable {
     private Reparacion reparacionAgregar;
     //lista para visualizar todos los ordenadores
     private List<Ordenador> ordenadores;
-    private Ordenador ordenadoR;
+    private Ordenador ordenadorSeleccionado;
 
     @EJB
     private ReparacionFacadeLocal reparacionEJB;
@@ -53,7 +53,7 @@ public class ModificarEmpleadoController implements Serializable {
         
         reparacionAgregar=new Reparacion();
         ordenadores = ordenadorEJB.findAll();
-        ordenadoR=new Ordenador();
+        ordenadorSeleccionado = new Ordenador();
     }
     
 
@@ -114,15 +114,24 @@ public class ModificarEmpleadoController implements Serializable {
         this.ordenadorEJB = ordenadorEJB;
     }
 
+    public Ordenador getOrdenadorSeleccionado() {
+        return ordenadorSeleccionado;
+    }
+
+    public void setOrdenadorSeleccionado(Ordenador ordenadorSeleccionado) {
+        this.ordenadorSeleccionado = ordenadorSeleccionado;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.empleado);
-        hash = 83 * hash + Objects.hashCode(this.reparacion);
-        hash = 83 * hash + Objects.hashCode(this.reparacionAgregar);
-        hash = 83 * hash + Objects.hashCode(this.ordenadores);
-        hash = 83 * hash + Objects.hashCode(this.reparacionEJB);
-        hash = 83 * hash + Objects.hashCode(this.ordenadorEJB);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.empleado);
+        hash = 89 * hash + Objects.hashCode(this.reparacion);
+        hash = 89 * hash + Objects.hashCode(this.reparacionAgregar);
+        hash = 89 * hash + Objects.hashCode(this.ordenadores);
+        hash = 89 * hash + Objects.hashCode(this.ordenadorSeleccionado);
+        hash = 89 * hash + Objects.hashCode(this.reparacionEJB);
+        hash = 89 * hash + Objects.hashCode(this.ordenadorEJB);
         return hash;
     }
 
@@ -150,6 +159,9 @@ public class ModificarEmpleadoController implements Serializable {
         if (!Objects.equals(this.ordenadores, other.ordenadores)) {
             return false;
         }
+        if (!Objects.equals(this.ordenadorSeleccionado, other.ordenadorSeleccionado)) {
+            return false;
+        }
         if (!Objects.equals(this.reparacionEJB, other.reparacionEJB)) {
             return false;
         }
@@ -158,14 +170,7 @@ public class ModificarEmpleadoController implements Serializable {
         }
         return true;
     }
-    
-    
 
-    
-
-    
-    
-    
     
     
     public void eliminarReparacion(Reparacion rep) {
@@ -184,7 +189,7 @@ public class ModificarEmpleadoController implements Serializable {
         nuevaReparacion.setDescripcion(reparacionAgregar.getDescripcion());
         nuevaReparacion.setFechaInicio(reparacionAgregar.getFechaInicio());
         nuevaReparacion.setFechaFin(reparacionAgregar.getFechaFin());
-        nuevaReparacion.setOrdenador(reparacionAgregar.getOrdenador());
+        nuevaReparacion.setOrdenador(ordenadorSeleccionado);
         nuevaReparacion.setEmpleado(empleado);
 
         // Guardar la nueva reparacion en la base de datos utilizando el EJB ReparacionFacade
