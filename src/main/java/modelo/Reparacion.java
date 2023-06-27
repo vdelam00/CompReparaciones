@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,10 +32,12 @@ public class Reparacion implements Serializable{
     private String descripcion;
     
     @Column(name="fechaInicio")
-    private String fechaInicio;
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicio;
     
     @Column(name="fechaFin")
-    private String fechaFin;
+    @Temporal(TemporalType.DATE)
+    private Date fechaFin;
     
     @ManyToOne
     @JoinColumn(name = "idOrdenador")
@@ -66,19 +71,19 @@ public class Reparacion implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(String fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
