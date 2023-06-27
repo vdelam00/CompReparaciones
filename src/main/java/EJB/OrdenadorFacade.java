@@ -5,12 +5,9 @@
  */
 package EJB;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import modelo.Cliente;
 import modelo.Ordenador;
 
 /**
@@ -30,12 +27,6 @@ public class OrdenadorFacade extends AbstractFacade<Ordenador> implements Ordena
 
     public OrdenadorFacade() {
         super(Ordenador.class);
-    }
-    
-    public List<Ordenador> findByCliente(Cliente cliente) {
-        TypedQuery<Ordenador> query = em.createQuery("SELECT o FROM Ordenador o WHERE o.cliente = :cliente", Ordenador.class);
-        query.setParameter("cliente", cliente);
-        return query.getResultList();
     }
     
 }

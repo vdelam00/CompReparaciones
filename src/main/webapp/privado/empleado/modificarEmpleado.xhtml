@@ -3,8 +3,7 @@
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:p="http://primefaces.org/ui"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
+       xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -37,46 +36,9 @@
                             <p:column headerText="Empleado">
                                 <h:outputText value="#{reparacion.empleado.user}" />
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Eliminar" />
-                                </f:facet>
-                                <h:commandLink value="Eliminar" action="#{ModificarEmpleadoController.eliminarReparacion(reparacion)}">
-                                    <f:ajax execute="@this" render="@form" />
-                                </h:commandLink>
-                            </p:column>
-                        </p:dataTable>
-                        <h:panelGrid columns="2">
-                            <h:outputLabel for="descripcionInput" value="Descripcion de la reparacion:" />
-                            <p:inputText id="descripcionInput" value="#{ModificarEmpleadoController.reparacionAgregar.descripcion}" />
-
-                            <h:outputLabel for="fechaInicio" value="Fecha de inicio:" />
-                            <p:calendar id="fechaInicio" value="#{ModificarEmpleadoController.reparacionAgregar.fechaInicio}" pattern="yyyy-MM-dd" />
                             
-                            <h:outputLabel for="fechaFin" value="Fecha de fin:" />
-                            <p:calendar id="fechaFin" value="#{ModificarEmpleadoController.reparacionAgregar.fechaFin}" pattern="yyyy-MM-dd" /> 
-                            
-                            <h:outputLabel for="ordenadorInput" value="Ordenador de la reparacion:" />
-                            <p:inputText id="ordenadorInput" value="#{ModificarEmpleadoController.reparacionAgregar.ordenador.id}" />
-                        </h:panelGrid>
-                        <p:commandButton value="Añadir Reparacion" action="#{ModificarEmpleadoController.agregarReparacion()}" update="tableForm" />
-                        <!--tabla para ver tu ordenador y guardarlo bbdd-->
-                        <h2>ORDENADORES</h2>
-                        <p:dataTable value="#{ModificarEmpleadoController.ordenadores}" var="ordenadoR" rows="10"
-                                     paginator="true" paginatorPosition="both"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-                            <p:column headerText="ID">
-                                <h:outputText value="#{ordenadoR.id}" />
-                            </p:column>
-                            <p:column headerText="Nombre">
-                                <h:outputText value="#{ordenadoR.nombre}" />
-                            </p:column>
-                            <p:column headerText="Descripción">
-                                <h:outputText value="#{ordenadoR.descripcion}" />
-                            </p:column>
                         </p:dataTable>
+                        
                     </h:form>
                     
                 </div>

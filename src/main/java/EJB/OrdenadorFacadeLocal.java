@@ -7,7 +7,6 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
-import modelo.Cliente;
 import modelo.Ordenador;
 
 /**
@@ -30,7 +29,5 @@ public interface OrdenadorFacadeLocal {
     List<Ordenador> findRange(int[] range);
 
     int count();
-    
-    List<Ordenador> findByCliente(Cliente cliente);
     
 }
